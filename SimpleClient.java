@@ -5,7 +5,14 @@ public class SimpleClient {
     private Socket socket;
     private PrintWriter out;
     private Scanner in;
-    public SimpleClient(String ip, int port) {}
+    public SimpleClient(String ip, int port) throws IOException{
+      this.socket = new Socket(ip, port);
+      System.out.println("Client is connecting");
+      InputStream i = socket.getInputStream();
+      OutputStream o = socket.getOutputStream();
+      in = new Scanner(i);
+      out = new PrintWriter(o, true);
+    }
     public void sendMessage(String message) {}
     public String receiveMessage() { return null; }
     public void close() {}

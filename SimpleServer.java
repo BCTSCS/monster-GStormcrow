@@ -6,13 +6,23 @@ public class SimpleServer {
     private Socket socket;
     private PrintWriter out;
     private Scanner in;
-    public SimpleServer(int port) throws IOException {
+    public SimpleServer(int port) throws IOException{
         serverSocket = new ServerSocket(port);
         System.out.println("Server started on port: " + port);
     }
-    public void acceptClient() {}
-    public String receiveMessage() {  return ""; }
-    public void sendMessage(String message) {}
+    public void acceptClient() {
+        socket = serverSocket.accept();
+        InputStream i = socket.getInputStream();
+        OutputStream o = socket.getOutputStream();
+        in = new Scanner(i);
+        out = new PrintWriter(o, true);
+    }
+    public String receiveMessage() {
+        return in.nextLine();
+    }
+    public void sendMessage(String message) {
+        out.println(message);
+    }
     public void close() { }
     public static void main(String[] args) {
     try{
