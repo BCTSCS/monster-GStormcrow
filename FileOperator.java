@@ -5,15 +5,15 @@ public class FileOperator {
     private File myFile;
     private Scanner fileReader;
 
-    public FileOperator(String f){
+    public FileOperator(String f) throws IOException{
         setFile(f);
     }
 
-    public void setFile(String f) throws IO Exception{
+    public void setFile(String f) throws IOException{
         myFile = new File(f);
         fileReader = new Scanner(myFile);
     }
-    public String readLines(){
+    public String readLine() throws IOException{
         return fileReader.nextLine();
     }
 }

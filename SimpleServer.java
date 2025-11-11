@@ -10,7 +10,7 @@ public class SimpleServer {
         serverSocket = new ServerSocket(port);
         System.out.println("Server started on port: " + port);
     }
-    public void acceptClient() {
+    public void acceptClient() throws IOException {
         socket = serverSocket.accept();
         InputStream i = socket.getInputStream();
         OutputStream o = socket.getOutputStream();
@@ -24,22 +24,24 @@ public class SimpleServer {
         out.println(message);
     }
     public void close() { }
-    public static void main(String[] args) {
-    try{
-        SimpleServer s = new SimpleServer(9090);
+     public static void main(String[] args) throws IOException {
+        SimpleServer s = new SimpleServer(8888);
         s.acceptClient();
-        while(true){
-            s.sendMessage("Hello ");
-            String reply= s.receiveMessage();
-            System.out.println(reply+ " ");
-            if (reply.equals("stop")){
+
+        FileOperator file = new FileOperator("server.txt");
+          while(true){
+            String user=s.receiveMessage();
+            System.out.println("User: " + user);
+            if (user.equals("exit")){
                 break;
             }
+            String response=file.readLine();
+            s.sendMessage(response);
+            System.out.println("Us: " + response);
         }
-        } catch(IOException e){
-
-        } // end off try
+        s.close();
     }
+
 }
 
 

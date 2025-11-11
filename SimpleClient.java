@@ -17,17 +17,22 @@ public class SimpleClient {
     public String receiveMessage() { return null; }
     public void close() {}
   public static void main(String[] args) throws IOException {
-        SimpleClient s = new SimpleClient("127.0.0.1", 9090);
+        SimpleClient a = new SimpleClient("127.0.0.1", 8888);
+          
+          FileOperator file = new FileOperator("client.txt");
           while(true){
-            s.sendMessage("Client");
-            String reply= s.receiveMessage();
-            System.out.println(reply+ " ");
-            if (reply.equals("stop")){
+            String message = file.readLine();
+            a.sendMessage("Client");
+            
+            if (message.equals("exit")){
                 break;
             }
+            System.out.println("Me:" + message);
 
+            String server=a.receiveMessage();
+            System.out.println("Server: " + server);
         }
-
+        a.close();
 
     }
 
