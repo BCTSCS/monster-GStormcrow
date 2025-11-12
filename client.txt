@@ -3,4 +3,4 @@ Nice to see you
 Hi
 Tell me more
 Send me this file
-quit
+exit
