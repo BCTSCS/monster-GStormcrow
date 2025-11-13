@@ -6,11 +6,11 @@ public class SimpleServer {
     private Socket socket;
     private PrintWriter out;
     private Scanner in;
-    public SimpleServer(int port) throws IOException{
+    public SimpleServer(int port) throws Exception{
         serverSocket = new ServerSocket(port);
         System.out.println("Server started on port: " + port);
     }
-    public void acceptClient() throws IOException {
+    public void acceptClient() throws Exception {
         socket = serverSocket.accept();
         InputStream i = socket.getInputStream();
         OutputStream o = socket.getOutputStream();
@@ -24,7 +24,7 @@ public class SimpleServer {
         out.println(message);
     }
     public void close() { }
-     public static void main(String[] args) throws IOException {
+     public static void main(String[] args) throws Exception {
         SimpleServer s = new SimpleServer(8888);
         s.acceptClient();
 

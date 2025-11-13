@@ -6,7 +6,7 @@ public class SimpleClient {
     private PrintWriter out;
     private Scanner in;
     
-    public SimpleClient(String ip, int port) throws IOException{
+    public SimpleClient(String ip, int port) throws Exception{
       socket = new Socket(ip, port);
       System.out.println("Client is connecting");
       InputStream i = socket.getInputStream();
@@ -21,7 +21,7 @@ public class SimpleClient {
       return in.nextLine();
       }
     public void close() {}
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws Exception {
         SimpleClient a = new SimpleClient("127.0.0.1", 8888);
           
           FileOperator file = new FileOperator("client.txt");
