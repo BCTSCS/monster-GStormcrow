@@ -42,9 +42,12 @@ public class Magpie3
 				|| findKeyword(statement, "frog") >= 0)
 		{
 			response = "Tell me more about your pets.";
-		}
-
-		else if (findKeyword(statement, "no") >= 0)
+		}else if (findKeyword(statement, "Mr.") >= 0
+                 || findKeyword(statement, "Mrs.") >= 0
+                 || findKeyword(statement, "Ms.") >= 0
+                 || findKeyword(statement, "Dr.") >= 0) {
+       response = "Tell me more about that person.";
+     }	else if (findKeyword(statement, "no") >= 0)
 		{
 			response = "Why so negative?";
 		}
