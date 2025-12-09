@@ -36,6 +36,9 @@ public class Monster{
     public String getName(){
         return this.name;
     }
+    public String toString(){
+        return ""+this.name+" has "+this.arms+" arms, "+this.eyes+" eyes, and "+this.buttons+" buttons.";
+    }
 
     public static void main(String[] args){
         Monster m1 = new Monster();
